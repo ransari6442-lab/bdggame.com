@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BDG Game — Play, Predict & Win</title>
+  <meta name="description" content="BDG Game — Colour prediction & casino-style mini-games. Login, register, download the app and start playing." />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
+  <style>
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;line-height:1.45;color:#0f172a;background:linear-gradient(180deg,#070617 0%, #08102a 60%);}
+
+    .container{max-width:1100px;margin:36px auto;padding:24px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6);}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .brand .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#ff7a18,#af002d);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(175,0,45,0.2)}
+    nav a{color:#cde1ff;margin-left:18px;text-decoration:none;font-weight:600}
+
+    .cta {display:flex;gap:10px}
+    .btn{background:#0ea5a5;color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 6px 18px rgba(14,165,165,0.12)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#a9c4ff}
+
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-top:28px}
+    .hero h1{font-size:34px;color:linear-gradient(90deg,#fff,#cfe8ff);background:linear-gradient(90deg,#fff,#cfe8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{color:#cbd7ff;margin-top:12px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+
+    .download-panel{display:flex;flex-direction:column;gap:12px;align-items:center}
+    .download-panel .app-icon{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,#ffd54a,#ff7a18);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#071129;box-shadow:0 18px 40px rgba(255,122,24,0.12)}
+    .download-panel strong{color:#001029}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+    .feature{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .feature h4{margin-bottom:8px;color:#e6f1ff}
+    .feature p{font-size:13px;color:#bcd2ff}
+
+    .gift{margin-top:18px;background:linear-gradient(90deg,#05122b 0%,#071129 100%);padding:12px;border-radius:10px;border:1px dashed rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:space-between}
+    .gift .code{font-family:monospace;color:#ffd98a;font-weight:800}
+
+    .content-section{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:28px}
+    .article{padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));border-radius:12px}
+
+    .steps{list-style:none;margin-top:12px}
+    .steps li{padding:10px 12px;margin-bottom:8px;background:rgba(255,255,255,0.02);border-radius:8px;color:#d7e7ff}
+
+    .games-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+
+    footer{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;color:#9fb6ff;font-size:13px}
+
+    /* Responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.content-section{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.games-grid{grid-template-columns:1fr}}
+
+    /* subtle animations */
+    .pulse{animation:pulse 3s ease-in-out infinite}
+    @keyframes pulse{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* Accordion FAQ */
+    .faq-item{border-radius:10px;margin-bottom:8px;overflow:hidden}
+    .faq-q{padding:12px;background:rgba(255,255,255,0.02);cursor:pointer}
+    .faq-a{padding:12px;background:rgba(0,0,0,0.35);display:none}
+
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" style="background:none;padding:0;box-shadow:none">
+  <img src="https://i.ibb.co/hxQXnwgS/images.jpg" style="width:54px;height:54px;border-radius:12px;object-fit:cover;box-shadow:0 0 18px rgba(0,255,255,0.55);filter:drop-shadow(0 0 8px cyan) drop-shadow(0 0 16px #00eaff);" />
+</div>
+        <div>
+          <div style="color:#dbe9ff;font-weight:800">BDG Game</div>
+          <div style="font-size:12px;color:#7fa6ff">Colour prediction · Casino mini-games</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="cta">
+        <a class="btn ghost" href="https://bdgipl.org//#/register?invitationCode=144118975357">Register</a>
+        <a class="btn" href="https://bdgipl.org//#/register?invitationCode=144118975357">Download</a>
+      </div>
+    </header>
+
+    <section>
+  
+      <div>
+        <h1>BDG Game — Play the Colour Prediction & Win</h1>
+        <p>Fast, light-weight game app with 500+ mini-games including colour prediction, fishing, slots, lottery and live sports markets. Secure wallet, instant bonuses and round-the-clock support.</p>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          
+          <a class="btn ghost" href="https://bdgipl.org//#/register?invitationCode=144118975357">Try Demo</a>
+          <a class="btn ghost" href="https://t.me/" target="_blank">Join Telegram</a>
+        </div>
+
+        <div class="features" aria-hidden>
+          <div class="feature"><h4>500+ Games</h4><p>Explore fishing, slots, K3 lottery, prediction and more.</p></div>
+          <div class="feature"><h4>Fast Wallet</h4><p>Top up using UPI, netbanking, cards and instant withdrawals.</p></div>
+          <div class="feature"><h4>Refer & Earn</h4><p>Share your referral link and earn rewards for every join.</p></div>
+        </div>
+
+        <div class="gift" style="margin-top:12px">
+          <div>
+            <div style="color:#9fcaff;font-weight:700">BDG Game Gift Code (updates daily)</div>
+            <div class="code">654C25233F2A80B3A48142BKBDC08DAE</div>
+          </div>
+          <div style="font-size:12px;color:#b8d7ff">App size: 2.8 MB</div>
+        </div>
+      </div>
+
+      <aside class="card download-panel">
+        <div class="app-icon" style="background:none;box-shadow:none;padding:0">
+  <img src="https://i.ibb.co/hxQXnwgS/images.jpg" style="width:120px;height:120px;border-radius:18px;object-fit:cover;box-shadow:0 0 25px rgba(0,255,255,0.55);filter:drop-shadow(0 0 10px cyan) drop-shadow(0 0 20px #00eaff);" />
+</div>
+        <div style="text-align:center">
+          <strong>BDG Game App</strong>
+          <div style="font-size:13px;color:#b6d8ff;margin-top:6px">Lightweight • Secure • Daily Bonuses</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          
+          <a href="#" class="btn ghost">iOS Guide</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="content-section">
+      <article class="article">
+        <h2>How to Register & Play</h2>
+        <ol class="steps">
+          <li><strong>Open Register:</strong> Click the Register button and fill your mobile number, password and invite code.</li>
+          <li><strong>Login:</strong> Use your credentials to login and access the games list.</li>
+          <li><strong>Deposit:</strong> Go to Wallet → Deposit → Choose a payment method and add funds.</li>
+          <li><strong>Play & Predict:</strong> Choose a game, make a prediction and place your bet.</li>
+          <li><strong>Withdraw:</strong> Go to Wallet → Withdraw and add bank details. Withdrawals processed within 48 hours.</li>
+        </ol>
+
+        <h3 style="margin-top:12px">Types of Games</h3>
+        <div class="games-grid">
+          <div class="card">Fishing Games<br><small>Fashing Yilufa, Dragon Fishing, Master Fishing</small></div>
+          <div class="card">Lottery & K3<br><small>5D, K3, TRX</small></div>
+          <div class="card">Slots<br><small>Evolution, AG, JDB</small></div>
+          <div class="card">Sports<br><small>Cricket, Football, Basketball</small></div>
+        </div>
+
+        <h3 style="margin-top:12px">Tips to Improve Chances</h3>
+        <ul style="margin-top:8px;color:#cfe6ff">
+          <li>Read rules for each game and stay updated with platform changes.</li>
+          <li>Manage your budget — set deposit and loss limits.</li>
+          <li>Participate in promotions and claim bonuses.</li>
+        </ul>
+      </article>
+
+      <aside class="card">
+        <h3>Support & Links</h3>
+        <p style="font-size:13px;color:#bcd6ff">Need help? Contact our support team via Telegram or the contact form below. 24/7 assistance available.</p>
+        <div style="margin-top:12px">
+          <a class="btn" href="mailto:support@bdggame.example">Email Support</a>
+        </div>
+
+        <div style="margin-top:14px">
+          <h4 style="color:#e6f1ff">Refer & Earn</h4>
+          <p style="font-size:13px;color:#bcd6ff">Promote BDG and earn commission when friends register with your referral link.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="faq" style="margin-top:18px">
+      <h2>Frequently Asked Questions</h2>
+      <div style="margin-top:10px">
+        <div class="faq-item">
+          <div class="faq-q">How to register for BDG game?</div>
+          <div class="faq-a">Click Register → fill the mobile number and password → enter invite code → submit.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is BDG Game safe and secure?</div>
+          <div class="faq-a">The app uses standard encryption and secure wallet mechanisms. Always keep your credentials private.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I withdraw my winnings?</div>
+          <div class="faq-a">Go to Wallet → Withdraw → Add bank details and request withdrawal. Processing time may take up to 48 hours.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© BDG Game • Built with care</div>
+      <div>Made better than the original • <a href="#" style="color:#bcd6ff">Privacy</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // Small interactivity: FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      q.addEventListener('click', ()=>{
+        const open = a.style.display === 'block';
+        document.querySelectorAll('.faq-a').forEach(x=>x.style.display='none');
+        a.style.display = open ? 'none' : 'block';
+      });
+    });
+
+    // Scroll to top anchor for deep links
+    if(window.location.hash){
+      const el = document.querySelector(window.location.hash);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>
